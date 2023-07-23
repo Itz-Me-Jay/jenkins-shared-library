@@ -1,9 +1,11 @@
 def call(Map stepsParams) {
+    // Store Git credentials using the withCredentials block
     withCredentials([usernamePassword(credentialsId: 'my-credentials-id', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-// we are calling gitcheckout Using "MAP" "Variable" for parameters like branch and url     
-    checkout ([
-        $class: 'GitSCM'
-        branches: [[name: stageParams.branch]],
-        userRemoteConfig: [[ url: staheParams.url]]
-    ])
+        // Call gitcheckout using "MAP" variables for parameters like branch and URL     
+        checkout([
+            $class: 'GitSCM',
+            branches: [[name: stageParams.branch]],
+            userRemoteConfig: [[url: stageParams.url]]
+        ])
+    }
 }
