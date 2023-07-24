@@ -7,5 +7,5 @@ def call(Map stepsParams) {
             branches: [[name: stageParams.branch]],
             userRemoteConfig: [[url: stageParams.url]]
         ])
-    }
+    // }
 }
