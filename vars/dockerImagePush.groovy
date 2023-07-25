@@ -7,17 +7,17 @@ def call(String project, String ImageTag, String hubUser){
 */
         withCredentials([string(
              credentialsId: 'dockerhub',
-             usernameVariable: "USER", 
-             passwordVariable: "PASS"
+             variable: 'USER',
+             passwordVariable: 'PASS'
         )]) {
-            sh "docker login -u '$USER' -p '$PASS'"
+             sh "docker login -u $USER -p $PASS"
         }        
         sh "docker image push ${hubUser}/${project3}:${ImageTag}"
         sh "docker image push ${hubUser}/${project3}:latest"   
 }
 
+/* FOR AWS ECR
 
-/*
 def call(String aws_account_id, String region, String ecr_repoName){
     
     sh """
