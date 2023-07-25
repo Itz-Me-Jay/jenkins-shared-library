@@ -6,8 +6,12 @@ def call(String project, String ImageTag, String hubUser){
              passwordVariable: "PASS"     )]) 
 */
         withCredentials([string(
-             credentialsId: 'dockerhub', 
-             variable: 'docker')]) {
+             credentialsId: 'dockerhub',
+             usernameVariable: "USER", 
+             passwordVariable: "PASS"
+        )]) {
+            sh "docker login -u '$USER' -p '$PASS'"
+        }
         }           
         sh "docker image push ${hubUser}/${project3}:${ImageTag}"
         sh "docker image push ${hubUser}/${project3}:latest"   
